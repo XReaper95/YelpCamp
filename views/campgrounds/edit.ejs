@@ -2,9 +2,9 @@
 
 <div class="container">
   <div class="row">
-    <h1 id="formTitle">Edit Campground</h1>
+    <h1 class="formTitle">Edit Campground</h1>
     
-    <div id="newCampForm">
+    <div class="myForm">
       <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST">
         <div class="form-group">
           <input class="form-control" type="text" name="campground[name]" value="<%=campground.name%>">

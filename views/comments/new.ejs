@@ -2,9 +2,9 @@
 
 <div class="container">
   <div class="row">
-    <h1 id="formTitle">Add New Comment to <%=campground.name%> </h1>
+    <h1 class="formTitle">Add New Comment to <%=campground.name%> </h1>
     
-    <div id="newCampForm">
+    <div class="myForm">
       <form action="/campgrounds/<%=campground._id%>/comments" method="post">
         <div class="form-group">
           <textarea class="form-control" name="comment[text]" cols="30" rows="10" placeholder="Say something about the place" required></textarea>

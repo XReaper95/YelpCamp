@@ -1,38 +1,62 @@
-textarea{
+textarea {
   resize: none;
 }
 
-.thumbnail img{
+html {
+  height: 100%;
+}
+
+body{
+  height: 100%;
+}
+
+.thumbnail img {
   width: 100%;
 }
 
-.col-md-9 .thumbnail{
+.col-md-9 .thumbnail {
   padding: 0;
 }
 
-.thumbnail .caption-full{
+.thumbnail .caption-full {
   padding: 9px;
 }
 
-#newCampForm{
+.myForm {
   width: 30%;
   margin: 25px auto;
 }
 
-#formTitle{
+.formTitle {
   text-align: center;
 }
 
-.edDelBtn{
+.edDelBtn {
   width: 18%;
-  margin : 4px;
+  margin: 4px;
 }
 
-.delForm{
+.delForm {
   display: inline;
 }
 
-.footer{
+.footer-container {
+  border-top-left-radius: 7%;
+  border-top-right-radius: 7%;
   width: 60%;
+  bottom: 0;
+  padding: 1rem;
+  background-color: #e5e2e2;
+  text-align: center;
+}
+
+.copyright {
   margin: auto;
+  font-family: 'Lucida Sans';
+  font-weight: 400;
+  font-size: 15px;
+}
+
+.form-correction{
+  height: 83%;
 }
