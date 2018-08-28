@@ -63,13 +63,12 @@ app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
 
 // //server init
-// app.listen(3000 || process.env.PORT , '0.0.0.0', () => {
-//   console.log("YELPCAMP SERVER RUNNING");
-//   if (resetDatabase) console.log("SEEDING...");
-// }); //process.env.PORT is needed for dinamically assigned ports
+var port = 3000 || process.env.PORT;
 
-//server init for heroku
-app.listen(process.env.PORT, '0.0.0.0');
+app.listen(port || 3000 , process.env.IP, () => {
+  console.log("YELPCAMP SERVER RUNNING");
+  if (resetDatabase) console.log("SEEDING...");
+}); //process.env.PORT and process.end.IP are needed for dinamically assigned ports
 
 
 
