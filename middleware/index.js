@@ -3,7 +3,7 @@ var Campground = require('../models/campground');
 var Comments = require('../models/comment');
 var showErrMsgPerm = function(req) {req.flash("error", "You dont have permission to do that");}
 var showErrMsgLogin = function(req) {req.flash("error", "You need to login first!");}
-var showErrMsgUnk = function(req,err) {req.flash("error:", err.message);}
+var showErrMsgUnk = function(req,err) {req.flash("error", err.message);}
 
 middlewareObj = {
     //middleware function for login check(extra layer)

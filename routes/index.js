@@ -23,8 +23,8 @@ router.post("/register", function (req, res) {
 
     User.register(newUser, password, function (err, user) {
         if (err) {
-            req.flash("error:", err.message);
-            return res.render("register");
+            req.flash("error", err.message);
+            return res.redirect("register");
         }
         passport.authenticate("local")(req, res, function () {
             req.flash("sucess", user.username + "registered successfully");
@@ -42,7 +42,9 @@ router.get("/login", function (req, res) {
 router.post("/login", 
     passport.authenticate("local", {
     successRedirect: "/campgrounds",
-    failureRedirect: "/login"
+    failureRedirect: "/login",
+    failureFlash: true,
+    successFlash: "Login Successful"
     }),
      middleware.emptyCallback);
 
