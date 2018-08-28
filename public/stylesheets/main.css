@@ -31,3 +31,8 @@ textarea{
 .delForm{
   display: inline;
 }
+
+.footer{
+  width: 60%;
+  margin: auto;
+}
