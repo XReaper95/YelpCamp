@@ -1,0 +1,33 @@
+textarea{
+  resize: none;
+}
+
+.thumbnail img{
+  width: 100%;
+}
+
+.col-md-9 .thumbnail{
+  padding: 0;
+}
+
+.thumbnail .caption-full{
+  padding: 9px;
+}
+
+#newCampForm{
+  width: 30%;
+  margin: 25px auto;
+}
+
+#formTitle{
+  text-align: center;
+}
+
+.edDelBtn{
+  width: 18%;
+  margin : 4px;
+}
+
+.delForm{
+  display: inline;
+}
