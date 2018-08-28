@@ -20,12 +20,9 @@ var campgroundRoutes = require('./routes/campgrounds'),
 
 //database set up
 if (resetDatabase) seedDB();
-// mongoose.connect("mongodb://localhost:27017/yelp_camp", {
-//   useNewUrlParser: true
-// });  //local database
-mongoose.connect("mongodb://luis:luis123@ds135852.mlab.com:35852/yelpcamp", {
+mongoose.connect(process.env.YELPCAMPDB, {
   useNewUrlParser: true
-});//online database
+});
 
 //app configurations
 app.use(bodyParser.urlencoded({
@@ -62,13 +59,10 @@ app.use(indexRoutes);
 app.use("/campgrounds",campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
 
-// //server init
-var port = process.env.PORT;
-
-app.listen(port , process.env.IP, () => {
+app.listen(process.env.PORT, () => {
   console.log("YELPCAMP SERVER RUNNING");
   if (resetDatabase) console.log("SEEDING...");
-}); //process.env.PORT and process.end.IP are needed for dinamically assigned ports
+}); //process.env.PORT is needed for dinamically assigned ports
 
 
 
