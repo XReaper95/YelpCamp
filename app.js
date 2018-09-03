@@ -16,7 +16,8 @@ var bodyParser       = require('body-parser'),
 //importing routes
 var campgroundRoutes = require('./routes/campgrounds'),
     commentRoutes    = require('./routes/comments'),
-    indexRoutes      = require('./routes/index');
+    indexRoutes      = require('./routes/index'),
+    watsonRoutes     = require('./routes/chat')
 
 //database set up
 if (resetDatabase) seedDB();
@@ -56,15 +57,16 @@ app.use(function (req, res, next) {
 
 //setting routes
 app.use(indexRoutes);
+app.use(watsonRoutes);
 app.use("/campgrounds",campgroundRoutes);
-app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/campgrounds/:id/comments",commentRoutes); 
 
 var port = process.env.PORT || 3000;
 
-app.listen(process.env.PORT, process.env.IP, () => {
-  console.log("YELPCAMP SERVER RUNNING");
+app.listen(port, process.env.IP, () => {
+  console.log("YELPCAMP SERVER RUNNING at " + process.env.IP + ":"+ port);
   if (resetDatabase) console.log("SEEDING...");
-}); //process.env.PORT is needed for dinamically assigned ports
+}); //process.env.PORT is needed for dinamically assigned ports, same for process.env.IP
 
 
 
