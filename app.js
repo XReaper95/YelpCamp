@@ -17,7 +17,7 @@ var bodyParser       = require('body-parser'),
 var campgroundRoutes = require('./routes/campgrounds'),
     commentRoutes    = require('./routes/comments'),
     indexRoutes      = require('./routes/index'),
-    watsonRoutes     = require('./routes/chat')
+    watsonRoutes     = require('./routes/chat');
 
 //database set up
 if (resetDatabase) seedDB();
@@ -29,6 +29,7 @@ mongoose.connect(process.env.YELPCAMPDB, {
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public")); //for better file name handling
 app.use(expressSanitazer());
 app.set("view engine", "ejs"); //dinamic HTML technology
@@ -63,8 +64,8 @@ app.use("/campgrounds/:id/comments",commentRoutes);
 
 var port = process.env.PORT || 3000;
 
-app.listen(port, process.env.IP, () => {
-  console.log("YELPCAMP SERVER RUNNING at " + process.env.IP + ":"+ port);
+app.listen(port, 'localhost', () => {
+  console.log("YELPCAMP SERVER RUNNING at " + 'localhost' + ":"+ port);
   if (resetDatabase) console.log("SEEDING...");
 }); //process.env.PORT is needed for dinamically assigned ports, same for process.env.IP
 

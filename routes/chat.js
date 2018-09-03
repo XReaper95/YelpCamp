@@ -1,20 +1,17 @@
-var express     = require('express'),
-    router      = express.Router({mergeParams: true}),
-    bodyParser  = require('body-parser'),
-    middleware  = require('../middleware'),
-    AssistantV1 = require('watson-developer-cloud/assistant/v1');
-    app         = express();
+const express     = require('express'),
+      router      = express.Router({mergeParams: true}),
+      middleware  = require('../middleware'),
+      AssistantV1  = require('watson-developer-cloud/assistant/v1');
 
 //watson configuration
-var service = new AssistantV1({
-  username: process.env.MYCHAT_USER, // replace with service username
-  password: process.env.MYCHAT_PASS, // replace with service password
+const service = new AssistantV1({
+  username: '6222c521-0afc-49e5-8cf9-55f48d8c4804', // replace with service username
+  password: 'skFItfsyjPk2', // replace with service password
+  url: 'https://gateway.watsonplatform.net/assistant/api',
   version: '2018-02-16'
 });
 
-var workspace_id = process.env.MYCHAT_WORK_ID; // replace with workspace ID
-
-app.use(bodyParser.json());
+const workspace_id = '2c9f1bf3-c78e-4e06-865b-abf4e9359123'; // replace with workspace ID
 
 //GET Chat
 router.get("/watson", middleware.isLoggedIn, function (req, res) {
@@ -22,13 +19,13 @@ router.get("/watson", middleware.isLoggedIn, function (req, res) {
 });
 
 //POST Chat
-router.post('/watson', (req, res) => {
-  const { text, context = {} } = req.body;
+router.post('/watson/', middleware.isLoggedIn, (req, res) => {
+  const { text, context = {} } = req.body;  
 
   const params = {
     input: { text },
     workspace_id: workspace_id,
-    context
+    context,
   };
 
   service.message(params, (err, response) => {
@@ -39,4 +36,5 @@ router.post('/watson', (req, res) => {
 });
 
 module.exports = router;
+
 

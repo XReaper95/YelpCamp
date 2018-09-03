@@ -19,18 +19,19 @@ const InsertTemplateInTheChat = (template) => {
 };
 
 const getWatsonMessageAndInsertTemplate = async (text = '') => {
-  const uri = '/watson';
+  const uri = 'watson/';
 
   const response = await (await fetch(uri, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       text,
-      context
+      context,
     }),
   })).json();
-  
+
   context = response.context;
+  console.log(context);
 
   const template = templateChatMessage(response.output.text, 'watson');
 
