@@ -64,8 +64,8 @@ app.use("/campgrounds/:id/comments",commentRoutes);
 
 var port = process.env.PORT || 3000;
 
-app.listen(port, 'localhost', () => {
-  console.log("YELPCAMP SERVER RUNNING at " + 'localhost' + ":"+ port);
+app.listen(port, process.env.IP, () => {
+  console.log("YELPCAMP SERVER RUNNING at " + process.env.IP + ":"+ port);
   if (resetDatabase) console.log("SEEDING...");
 }); //process.env.PORT is needed for dinamically assigned ports, same for process.env.IP
 

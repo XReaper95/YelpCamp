@@ -5,13 +5,13 @@ const express     = require('express'),
 
 //watson configuration
 const service = new AssistantV1({
-  username: '6222c521-0afc-49e5-8cf9-55f48d8c4804', // replace with service username
-  password: 'skFItfsyjPk2', // replace with service password
+  username: process.env.MYCHAT_USER, // replace with service username
+  password: process.env.MYCHAT_PASS, // replace with service password
   url: 'https://gateway.watsonplatform.net/assistant/api',
   version: '2018-02-16'
 });
 
-const workspace_id = '2c9f1bf3-c78e-4e06-865b-abf4e9359123'; // replace with workspace ID
+const workspace_id = process.env.MYCHAT_WORK_ID; // replace with workspace ID
 
 //GET Chat
 router.get("/watson", middleware.isLoggedIn, function (req, res) {
