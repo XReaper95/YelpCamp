@@ -1,6 +1,7 @@
 const express     = require('express'),
       router      = express.Router({mergeParams: true}),
       middleware  = require('../middleware'),
+      chat        = require('../chat'),
       AssistantV1  = require('watson-developer-cloud/assistant/v1');
 
 //watson configuration
@@ -14,13 +15,14 @@ const service = new AssistantV1({
 const workspace_id = process.env.MYCHAT_WORK_ID; // replace with workspace ID
 
 //GET Chat
-router.get("/watson", middleware.isLoggedIn, function (req, res) {
+router.get("/watson",/* middleware.isLoggedIn,*/ function (req, res) {
     res.render("watson");
 });
 
 //POST Chat
-router.post('/watson/', middleware.isLoggedIn, (req, res) => {
+router.post('/watson/', /*middleware.isLoggedIn,*/ (req, res) => {
   const { text, context = {} } = req.body;  
+  
 
   const params = {
     input: { text },
@@ -30,6 +32,7 @@ router.post('/watson/', middleware.isLoggedIn, (req, res) => {
 
   service.message(params, (err, response) => {
     if (err) res.status(500).json(err);
+    else chat.processResponse(response);
 
     res.json(response);
   });
