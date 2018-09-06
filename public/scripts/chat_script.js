@@ -11,9 +11,10 @@ const templateChatMessage = (message, from) => `
   </div>
   `;
 
-const InsertTemplateInTheChat = (template) => {
+const InsertTemplateInTheChatandSpeak = (template,from) => {
   const div = document.createElement('div');
   div.innerHTML = template;
+  if(from === 'watson') watsonSay(div.textContent); 
 
   chat.appendChild(div);
 };
@@ -33,16 +34,20 @@ const getWatsonMessageAndInsertTemplate = async (text = '') => {
   context = response.context;
 
   const template = templateChatMessage(response.output.text, 'watson');
-
-  InsertTemplateInTheChat(template);
+  
+  InsertTemplateInTheChatandSpeak(template, 'watson');
 };
+
+const watsonSay = (text) => {
+  responsiveVoice.speak(text, "Brazilian Portuguese Female");
+}
 
 textInput.addEventListener('keydown', (event) => {
   if (event.keyCode === 13 && textInput.value) {
     getWatsonMessageAndInsertTemplate(textInput.value);
 
     const template = templateChatMessage(textInput.value, 'user');
-    InsertTemplateInTheChat(template);
+    InsertTemplateInTheChatandSpeak(template, 'user');
     
     textInput.value = '';
   }
