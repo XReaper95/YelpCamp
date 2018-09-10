@@ -9,7 +9,7 @@ const service = new AssistantV1({
   username: process.env.MYCHAT_USER, // replace with service username
   password: process.env.MYCHAT_PASS, // replace with service password
   url: 'https://gateway.watsonplatform.net/assistant/api',
-  version: '2018-02-16'
+  version: '2018-07-10'
 });
 
 const workspace_id = process.env.MYCHAT_WORK_ID; // replace with workspace ID
